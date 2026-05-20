@@ -1,0 +1,11 @@
+ID;partnerID;firstName;lastName;type;dateOfBirth;status;phone;email;relationshipProof;cardID;employees_ID
+3c9a84db-3112-48e3-a325-31d1526fadc9;P000000001;Laura;Johnson;SP;1987-05-20;true;5551112222;laura.johnson@example.com;true;C000000001;98d47819-c862-4e9f-aefd-c10d736c2a1c
+3c90272e-0abe-440c-bb99-d0e1540abb20;P000000002;Mark;Smith;SP;1989-12-15;true;5552223333;mark.smith@example.com;true;C000000002;c0071ca4-1e6a-4c29-84b3-e48efc3ad2d1
+697ebadc-a25b-4d08-a60d-a850a476ac9b;P000000003;Nina;Davis;SP;1983-08-10;false;5553334444;nina.davis@example.com;false;C000000003;d6379f96-dca1-4d95-8ebe-44c982871268
+3270a991-152d-4f55-bd9e-6189d374ac95;P000000004;Olivia;Miller;SP;1996-02-25;true;5554445555;olivia.miller@example.com;true;C000000004;30b6c752-aa07-4ab4-9916-e72ed025b43a
+1b9e2784-06fc-453a-bb04-b231c60ec403;P000000005;Peter;Wilson;SP;1990-11-05;true;5555556666;peter.wilson@example.com;true;C000000005;6a0695c6-e33b-4877-bcda-d4500ab291ff
+6b56acea-ea74-441f-9564-028a5cde833f;P000000006;Quinn;Moore;SP;1978-07-30;false;5556667777;quinn.moore@example.com;false;C000000006;e239af35-ec35-4a13-8119-6878f2098364
+bb6ab123-791c-418e-a3e1-894323e9f670;P000000007;Rachel;Taylor;SP;1993-03-12;true;5557778888;rachel.taylor@example.com;true;C000000007;a77e2ef6-3d2e-4f98-87f3-335403a0905c
+0804ae57-ad62-4095-8da6-b3950b2b073d;P000000008;Steve;Anderson;SP;1986-09-18;true;5558889999;steve.anderson@example.com;true;C000000008;3807e164-2cf4-411f-8447-73690cdc636c
+2e8d2193-2d3a-4ac7-aefc-c8b80dfef66c;P000000009;Tina;Thomas;SP;1994-06-22;true;5559990000;tina.thomas@example.com;true;C000000009;cfc72f84-16e7-456b-b638-d5d56a8b126c
+c7449c51-e423-47ff-b377-43f58dfa3667;P000000010;Umar;White;SP;1981-01-30;false;5550001111;umar.white@example.com;false;C000000010;3669ffa8-a6e2-4518-aeaa-86e3c0c64f09

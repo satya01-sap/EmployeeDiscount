@@ -1,0 +1,608 @@
+{
+    "namespace": "employeeDiscount",
+    "entities": [
+        {
+            "name": "Employees",
+            "label": "Employee",
+            "labelPlural": "Employees",
+            "associations": [
+                {
+                    "name": "Workplaces",
+                    "target": "Workplaces",
+                    "multiplicity": "many",
+                    "backAssociation": "employees"
+                },
+                {
+                    "name": "Cards",
+                    "target": "Cards",
+                    "multiplicity": "many",
+                    "backAssociation": "employees"
+                },
+                {
+                    "name": "Partners",
+                    "target": "Partners",
+                    "multiplicity": "many",
+                    "backAssociation": "employees"
+                }
+            ],
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "employeeID",
+                    "type": "String(10)",
+                    "label": "Employee ID",
+                    "additionalInfo": "Primary key for Employee entity",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "firstName",
+                    "type": "String(99)",
+                    "label": "First Name",
+                    "additionalInfo": "Employee's first name",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "lastName",
+                    "type": "String(99)",
+                    "label": "Last Name",
+                    "additionalInfo": "Employee's last name",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "email",
+                    "type": "String(99)",
+                    "label": "Email",
+                    "additionalInfo": "Employee's email address",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "phone",
+                    "type": "String(10)",
+                    "label": "Phone",
+                    "additionalInfo": "Employee's phone number",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "role",
+                    "type": "String(4)",
+                    "label": "Role",
+                    "additionalInfo": "Employee's role code",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "dateOfBirth",
+                    "type": "Date",
+                    "label": "Date Of Birth",
+                    "additionalInfo": "Employee's date of birth",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "dateOfJoining",
+                    "type": "Date",
+                    "label": "Date Of Joining",
+                    "additionalInfo": "Employee's hire date",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "department",
+                    "type": "String(4)",
+                    "label": "Department",
+                    "additionalInfo": "Department code",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "org",
+                    "type": "String(6)",
+                    "label": "Org",
+                    "additionalInfo": "Organization code",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "managerID",
+                    "type": "String(10)",
+                    "label": "Manager ID",
+                    "additionalInfo": "Manager's EmployeeID",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "eligibilityStatus",
+                    "type": "Boolean",
+                    "label": "Eligibility Status",
+                    "additionalInfo": "Indicates if employee is eligible for discounts",
+                    "key": false,
+                    "essentialElement": true
+                }
+            ]
+        },
+        {
+            "name": "Workplaces",
+            "label": "Workplace",
+            "labelPlural": "Workplaces",
+            "associations": [
+                {
+                    "name": "Offers",
+                    "target": "Offers",
+                    "multiplicity": "many",
+                    "backAssociation": "workplaces"
+                },
+                {
+                    "name": "employees",
+                    "target": "Employees",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "workplaceID",
+                    "type": "String(10)",
+                    "label": "Workplace ID",
+                    "additionalInfo": "Primary key for Workplace entity",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "workplaceName",
+                    "type": "String(99)",
+                    "label": "Workplace Name",
+                    "additionalInfo": "Name of the workplace",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "region",
+                    "type": "String(4)",
+                    "label": "Region",
+                    "additionalInfo": "Region code",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "country",
+                    "type": "String(3)",
+                    "label": "Country",
+                    "additionalInfo": "Country code (ISO 3-letter assumed)",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "city",
+                    "type": "String(99)",
+                    "label": "City",
+                    "additionalInfo": "City name",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "pin",
+                    "type": "String(6)",
+                    "label": "Pin",
+                    "additionalInfo": "Postal code / PIN",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "correspondenceAddress",
+                    "type": "String(255)",
+                    "label": "Correspondence Address",
+                    "additionalInfo": "Correspondence address as string (AddressType)",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "brand",
+                    "type": "String(4)",
+                    "label": "Brand",
+                    "additionalInfo": "Brand code",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "countryHeadID",
+                    "type": "String(10)",
+                    "label": "Country Head ID",
+                    "additionalInfo": "EmployeeID of country head",
+                    "key": false,
+                    "essentialElement": false
+                }
+            ]
+        },
+        {
+            "name": "Partners",
+            "label": "Partner",
+            "labelPlural": "Partners",
+            "associations": [
+                {
+                    "name": "employees",
+                    "target": "Employees",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "partnerID",
+                    "type": "String(10)",
+                    "label": "Partner ID",
+                    "additionalInfo": "Primary key for Partner entity",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "firstName",
+                    "type": "String(99)",
+                    "label": "First Name",
+                    "additionalInfo": "Partner's first name",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "lastName",
+                    "type": "String(99)",
+                    "label": "Last Name",
+                    "additionalInfo": "Partner's last name",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "type",
+                    "type": "String(2)",
+                    "label": "Type",
+                    "additionalInfo": "Type of partner (e.g., Husband/Wife)",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "dateOfBirth",
+                    "type": "Date",
+                    "label": "Date Of Birth",
+                    "additionalInfo": "Partner's date of birth",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "status",
+                    "type": "Boolean",
+                    "label": "Status",
+                    "additionalInfo": "Partner's status",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "phone",
+                    "type": "String(10)",
+                    "label": "Phone",
+                    "additionalInfo": "Partner's phone number",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "email",
+                    "type": "String(99)",
+                    "label": "Email",
+                    "additionalInfo": "Partner's email address",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "relationshipProof",
+                    "type": "Boolean",
+                    "label": "Relationship Proof",
+                    "additionalInfo": "Indicates if relationship proof is provided",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "cardID",
+                    "type": "String(25)",
+                    "label": "Card ID",
+                    "additionalInfo": "Associated CardNumber",
+                    "key": false,
+                    "essentialElement": false
+                }
+            ]
+        },
+        {
+            "name": "Cards",
+            "label": "Card",
+            "labelPlural": "Cards",
+            "associations": [
+                {
+                    "name": "Offers",
+                    "target": "Offers",
+                    "multiplicity": "many",
+                    "backAssociation": "cards"
+                },
+                {
+                    "name": "employees",
+                    "target": "Employees",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "cardNumber",
+                    "type": "String(25)",
+                    "label": "Card Number",
+                    "additionalInfo": "Primary key for Card entity",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "cardName",
+                    "type": "String(99)",
+                    "label": "Card Name",
+                    "additionalInfo": "Name of the card",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "cardType",
+                    "type": "String(2)",
+                    "label": "Card Type",
+                    "additionalInfo": "Type of card",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "issueDate",
+                    "type": "Date",
+                    "label": "Issue Date",
+                    "additionalInfo": "Card issue date",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "expiryDate",
+                    "type": "Date",
+                    "label": "Expiry Date",
+                    "additionalInfo": "Card expiry date",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "limit0",
+                    "type": "Integer",
+                    "label": "Limit",
+                    "additionalInfo": "Card limit",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "status",
+                    "type": "Boolean",
+                    "label": "Status",
+                    "additionalInfo": "Card status",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "issuedBy",
+                    "type": "String(10)",
+                    "label": "Issued By",
+                    "additionalInfo": "EmployeeID who issued the card",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "currency",
+                    "type": "String(3)",
+                    "label": "Currency",
+                    "additionalInfo": "Currency code (ISO 3-letter assumed)",
+                    "key": false,
+                    "essentialElement": false
+                }
+            ]
+        },
+        {
+            "name": "Offers",
+            "label": "Offer",
+            "labelPlural": "Offers",
+            "associations": [
+                {
+                    "name": "workplaces",
+                    "target": "Workplaces",
+                    "multiplicity": "one",
+                    "isComposition": false
+                },
+                {
+                    "name": "cards",
+                    "target": "Cards",
+                    "multiplicity": "one",
+                    "isComposition": false
+                }
+            ],
+            "elements": [
+                {
+                    "name": "ID",
+                    "type": "UUID",
+                    "key": true,
+                    "label": ""
+                },
+                {
+                    "name": "offerID",
+                    "type": "String(10)",
+                    "label": "Offer ID",
+                    "additionalInfo": "Primary key for Offer entity",
+                    "essentialElement": true,
+                    "semanticKey": true
+                },
+                {
+                    "name": "offerText",
+                    "type": "String(255)",
+                    "label": "Offer Text",
+                    "additionalInfo": "Description text of the offer",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "validFrom",
+                    "type": "Date",
+                    "label": "Valid From",
+                    "additionalInfo": "Offer validity start date",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "validTo",
+                    "type": "Date",
+                    "label": "Valid To",
+                    "additionalInfo": "Offer validity end date",
+                    "key": false,
+                    "essentialElement": true
+                },
+                {
+                    "name": "status",
+                    "type": "Boolean",
+                    "label": "Status",
+                    "additionalInfo": "Offer status",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "applicableCategories",
+                    "type": "String(4)",
+                    "label": "Applicable Categories",
+                    "additionalInfo": "Applicable category codes",
+                    "key": false,
+                    "essentialElement": false
+                },
+                {
+                    "name": "discountPercent",
+                    "type": "Integer",
+                    "label": "Discount Percent",
+                    "additionalInfo": "Discount percentage offered",
+                    "isAmount": true,
+                    "key": false,
+                    "essentialElement": true
+                }
+            ]
+        }
+    ],
+    "service": {
+        "name": "employeeDiscountSrv",
+        "path": "srv/service.cds"
+    },
+    "applications": [
+        {
+            "pages": [
+                {
+                    "type": "ListReport",
+                    "entityType": "Employees",
+                    "listReportContent": {
+                        "loadDataOnAppLaunch": "Auto",
+                        "filters": [
+                            "employeeID",
+                            "firstName",
+                            "lastName",
+                            "email",
+                            "phone",
+                            "role",
+                            "dateOfBirth",
+                            "dateOfJoining",
+                            "department",
+                            "org",
+                            "managerID",
+                            "eligibilityStatus"
+                        ],
+                        "tables": [
+                            {
+                                "title": "Employees",
+                                "id": "EmployeesTable",
+                                "baseEntityType": "Employees",
+                                "columns": [
+                                    "employeeID",
+                                    "firstName",
+                                    "lastName",
+                                    "email",
+                                    "phone",
+                                    "role",
+                                    "dateOfBirth",
+                                    "dateOfJoining",
+                                    "department",
+                                    "org",
+                                    "managerID",
+                                    "eligibilityStatus"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "Employees",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [
+                            "Workplaces",
+                            "Cards",
+                            "Partners"
+                        ],
+                        "sections": [],
+                        "tabs": [],
+                        "chartSections": []
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "Workplaces",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [
+                            "Offers"
+                        ],
+                        "sections": [],
+                        "tabs": [],
+                        "chartSections": []
+                    }
+                },
+                {
+                    "type": "ObjectPage",
+                    "entityType": "Cards",
+                    "objectPageContent": {
+                        "tableSectionAssociations": [
+                            "Offers"
+                        ],
+                        "sections": [],
+                        "tabs": [],
+                        "chartSections": []
+                    }
+                }
+            ],
+            "name": "employeeDiscountManagement"
+        }
+    ]
+}
