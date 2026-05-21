@@ -1,2 +1,2 @@
 
-using from './employeediscountmanagement/annotations';
+using from './discountapp/annotations';

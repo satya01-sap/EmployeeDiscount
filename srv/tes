@@ -1,0 +1,32 @@
+service EmployeeService @(requires: 'discount.employee')   {
+  @restrict: [{ grant: 'READ', where: 'employeeID = $user' }]
+  @readonly 
+  entity Employees as projection on discount.Employees;
+
+}
+
+@(path:'/admin')
+service AdminService @(requires: 'discount.admin')   {
+  entity Employees as projection on discount.Employees;
+}
+
+I have single fiori eleemnt app - this is annotation.cds - 
+using { EmployeeService  } from '../../srv/discount-service';
+
+annotate EmployeeService.Employees with @UI.DataPoint #firstName: {
+  Value: firstName,
+  Title: 'First Name',
+};
+annotate EmployeeService.Employees with @UI.DataPoint #lastName: {
+  Value: lastName,
+  Title: 'Last Name',
+};
+annotate EmployeeService.Employees with @UI.DataPoint #email: {
+  Value: email,
+  Title: 'Email',
+};
+annotate EmployeeService.Employees with @UI.HeaderFacets: [
+ { $Type : 'UI.ReferenceFacet', Target : '@UI.DataPoint#firstName', ID: 'FirstName' },
+ { $Type : 'UI.ReferenceFacet', Target : '@UI.DataPoint#lastName', ID: 'LastName' },
+ { $Type : 'UI.ReferenceFacet', Target : '@UI.DataPoint#email', ID: 'Email' }
+];

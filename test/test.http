@@ -1,0 +1,31 @@
+
+GET http://localhost:4004/discount/$metadata
+Authorization: Basic ZW1wbG95ZWU6ZW1wbG95ZWU=
+
+###
+GET http://employee@localhost:4004/discount/$metadata
+Authorization: Basic ZW1wbG95ZWU6ZW1wbG95ZWU=
+
+###
+GET http://employee@localhost:4004/discount/Employees
+Authorization: Basic ZW1wbG95ZWU6ZW1wbG95ZWU=
+
+###
+GET http://employee@localhost:4004/discount/Employees
+Authorization: Basic ZW1wbG95ZWU6ZW1wbG95ZWU=
+
+
+################ AMS Testing###########################
+
+### 
+GET http://Discount-Admin@localhost:4004/discount/Employees
+
+###
+GET http://Discount-Employee@localhost:4004/discount/Employees
+
+
+###
+GET http://localhost:4004/discount/Employees
+Authorization: Basic RGlzY291bnQtRW1wbG95ZWU=
+
+###

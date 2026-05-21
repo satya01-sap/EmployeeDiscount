@@ -1,0 +1,152 @@
+_schema-version: 3.3.0
+ID: EmployeeDiscount
+description: A simple CAP project.
+version: 1.0.0
+modules:
+  - name: EmployeeDiscount-srv
+    type: nodejs
+    path: gen/srv
+    properties:
+      AMS_DCL_ROOT: ams/dcl
+    requires:
+      - name: EmployeeDiscount-ias
+        parameters:
+          config:
+            app-identifier: srv
+            credential-type: X509_GENERATED
+      - name: EmployeeDiscount-db
+    provides:
+      - name: srv-api
+        properties:
+          srv-cert-url: ${protocol}://${default-host}.cert.${default-domain}
+          srv-url: ${default-url}
+    parameters:
+      buildpack: nodejs_buildpack
+      instances: 1
+      routes:
+        - route: ${default-url}
+        - route: ${default-host}.cert.${default-domain}
+    build-parameters:
+      builder: npm-ci
+    deployed-after:
+      - EmployeeDiscount-ams-policies-deployer
+  - name: EmployeeDiscount-ams-policies-deployer
+    type: javascript.nodejs
+    path: gen/policies
+    requires:
+      - name: EmployeeDiscount-ias
+        parameters:
+          config:
+            app-identifier: ams-policy-deployer
+            credential-type: X509_GENERATED
+    parameters:
+      buildpack: nodejs_buildpack
+      no-route: true
+      no-start: true
+      tasks:
+        - command: npm start
+          memory: 512M
+          name: deploy-dcl
+  - name: EmployeeDiscount-db-deployer
+    type: hdb
+    path: gen/db
+    requires:
+      - name: EmployeeDiscount-db
+    parameters:
+      buildpack: nodejs_buildpack
+  - name: EmployeeDiscount-app-content
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: EmployeeDiscount-repo-host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - comsapdiscountdiscountapp.zip
+          name: comsapdiscountdiscountapp
+          target-path: resources/
+        - artifacts:
+            - comsapdisdiscountapp.zip
+          name: comsapdisdiscountapp
+          target-path: resources/
+  - name: comsapdiscountdiscountapp
+    type: html5
+    path: app/discountapp
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+  - name: comsapdisdiscountapp
+    type: html5
+    path: app/discountapp
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm install
+        - npm run build:cf
+      supported-platforms:
+        []
+resources:
+  - name: EmployeeDiscount-ias
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        authorization:
+          enabled: true
+        display-name: EmployeeDiscount
+        oauth2-configuration:
+          token-policy:
+            access-token-format: jwt
+        provided-apis:
+          - description: API exposed by the application
+            name: EmployeeDiscount-ias-api
+        xsuaa-cross-consumption: true
+      service: identity
+      service-name: EmployeeDiscount-ias
+      service-plan: application
+  - name: EmployeeDiscount-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: EmployeeDiscount-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-name: EmployeeDiscount-html5-service
+      service-plan: app-host
+  - name: EmployeeDiscount-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: false
+        init_data:
+          instance:
+            destinations:
+              - Authentication: NoAuthentication
+                Name: ui5
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://ui5.sap.com
+            existing_destinations_policy: update
+        version: 1.0.0
+      service: destination
+      service-name: EmployeeDiscount-destination-service
+      service-plan: lite
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production

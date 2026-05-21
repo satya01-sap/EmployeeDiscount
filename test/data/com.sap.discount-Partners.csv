@@ -1,0 +1,6 @@
+ID;partnerID;firstName;lastName;type;dateOfBirth;status;phone;email;relationshipProof;cardID;employees_ID
+107739aa-f094-45f8-ac03-33da13084266;P000000001;Alice;Brown;FR;1985-06-15;true;1234567890;alice.brown@example.com;true;C123456789;107739aa-f094-45f8-ac03-33da13084266
+46489793-22e5-4931-894f-145d5a9250d9;P000000002;Bob;Green;FR;1990-07-20;true;0987654321;bob.green@example.com;true;C987654321;46489793-22e5-4931-894f-145d5a9250d9
+c5b61ab2-6310-4c1f-b96a-0cf596a56590;P000000003;Charlie;White;FR;1982-08-25;false;2345678901;charlie.white@example.com;false;C456789123;c5b61ab2-6310-4c1f-b96a-0cf596a56590
+a32ce37d-d0f1-4c59-b9d3-7a1f9776211b;P000000004;Diana;Black;FR;1995-09-30;true;3456789012;diana.black@example.com;true;C321654987;a32ce37d-d0f1-4c59-b9d3-7a1f9776211b
+68a54208-0ba3-4276-a4fe-10187c4dbf83;P000000005;Ethan;Blue;FR;1988-10-10;true;4567890123;ethan.blue@example.com;true;C654123789;68a54208-0ba3-4276-a4fe-10187c4dbf83

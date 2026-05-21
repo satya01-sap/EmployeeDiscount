@@ -1,0 +1,6 @@
+ID;employeeID;firstName;lastName;email;phone;role;dateOfBirth;dateOfJoining;department;org;managerID;eligibilityStatus;createdAt;createdBy;modifiedAt;modifiedBy
+107739aa-f094-45f8-ac03-33da13084266;E000000001;John;Doe;john.doe@example.com;1234567890;DEV;1990-01-15;2020-01-10;IT;ORG1;E000000010;true;2021-06-27T14:52:23Z;admin;2021-06-27T14:52:23Z;admin
+46489793-22e5-4931-894f-145d5a9250d9;E000000002;Jane;Smith;jane.smith@example.com;0987654321;HR;1985-02-20;2019-03-15;HR;ORG1;E000000011;true;2021-06-27T14:52:23Z;admin;2021-06-27T14:52:23Z;admin
+c5b61ab2-6310-4c1f-b96a-0cf596a56590;E000000003;Michael;Johnson;michael.j@example.com;2345678901;FIN;1980-03-30;2018-02-25;Finance;ORG1;E000000012;true;2021-06-27T14:52:23Z;admin;2021-06-27T14:52:23Z;admin
+a32ce37d-d0f1-4c59-b9d3-7a1f9776211b;E000000004;Emily;Davis;emily.davis@example.com;3456789012;MKT;1992-04-05;2021-04-01;Marketing;ORG1;E000000013;true;2021-06-27T14:52:23Z;admin;2021-06-27T14:52:23Z;admin
+68a54208-0ba3-4276-a4fe-10187c4dbf83;E000000005;David;Wilson;david.wilson@example.com;4567890123;OPS;1988-05-12;2020-05-15;Operations;ORG1;E000000014;true;2021-06-27T14:52:23Z;admin;2021-06-27T14:52:23Z;admin

@@ -12,8 +12,8 @@
     "@sap/ams-dev": "^2",
     "@sap/cds-dk": "^9",
     "cds-plugin-ui5": "^0.13.0",
-    "mbt": "^1.2.29",
-    "rimraf": "^5.0.5"
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.29"
   },
   "scripts": {
     "start": "cds-serve",
@@ -30,34 +30,45 @@
   ],
   "cds": {
     "requires": {
-      "db": "hana",
-      "auth": "ias",
+      "[production]": {
+        "db": "hana",
+        "auth": "ias"
+      },
       "[development]": {
         "db": "sqlite",
         "auth": {
           "kind": "mocked",
           "users": {
-            "Discount-Admin": {
-              "policies": [
-                "cap.DiscountAdmin"
+            "admin": {
+              "password": "admin",
+              "attributes": {
+                "groups": "Administrators"
+              },
+              "roles": [
+                "discount.admin"
               ]
             },
-            "Discount-Employee": {
-              "attr": {
-                "empid": "E000000001",
-                "name": "John"
+            "employee": {
+              "password": "employee",
+              "attributes": {
+                "employeeID": "E000000001"
               },
-              "policies": [
-                "cap.DiscountEmployee"
+              "roles": [
+                "discount.employee"
               ]
-            }
+            },
+            "content-manager": { 
+              "policies": [
+                "cap.ContentManager"
+              ]
+            },
+            "stock-manager": { 
+              "policies": [
+                "cap.StockManager"
+              ]
+          }
           }
         }
-      }
-    },
-    "log": {
-      "levels": {
-        "ams": "DEBUG"
       }
     }
   },
