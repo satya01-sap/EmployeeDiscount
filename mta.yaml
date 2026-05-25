@@ -1,6 +1,6 @@
 _schema-version: 3.3.0
 ID: EmployeeDiscount
-description: A simple CAP project.
+description: Employee Discount Application
 version: 1.0.0
 modules:
   - name: EmployeeDiscount-srv

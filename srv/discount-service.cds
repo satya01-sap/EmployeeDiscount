@@ -1,7 +1,8 @@
 using { com.sap.discount as discount } from '../db/discount-schema';
 
 
-@(path:'/discount')
+  @(path:'/discount')
+  //@requires{'authenticated-user'}
   service DiscountService @(requires: ['authenticated-user'])   {
     //annotate DiscountService.Employees with @fiori.draft.enabled;
     @odata.draft.enabled
@@ -13,7 +14,7 @@ using { com.sap.discount as discount } from '../db/discount-schema';
 
   @restrict: [
       { grant: '*', to: 'DiscountAdmin' },
-      { grant: 'READ',   to: 'DiscountEmployee', where: 'employeeID = $user.empid'}
+      { grant: 'READ', to: 'DiscountEmployee', where: 'employeeID = $user.empid'}
   ]
   entity Employees as projection on discount.Employees;
 
@@ -23,11 +24,22 @@ using { com.sap.discount as discount } from '../db/discount-schema';
   @readonly
   entity Partners as projection on discount.Partners;
 
+  @restrict:[
+    { grant: ['READ', 'CREATE', 'UPDATE' ], to: 'DiscountAdmin' },
+    { grant: ['READ'], to: 'DiscountEmployee' },
+    { grant: ['UPDATE'], to: 'DiscountEmployee', where: 'employees = $user.empid' }
+  ]
   @odata.draft.enabled
   entity Cards as projection on discount.Cards;
 
+  @restrict:[
+    { grant: ['READ', 'CREATE', 'UPDATE' ], to: 'DiscountAdmin' },
+    { grant: 'READ', to: 'DiscountEmployee' }
+  ]
   @odata.draft.enabled
   entity Offers as projection on discount.Offers;
+
+
   
   // entity Employees @(restrict: [{ grant: '*', to: 'discount.admin'} 
   // ]) as projection on discount.Employees;
