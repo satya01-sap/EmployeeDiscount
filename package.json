@@ -1,79 +1,96 @@
 {
-  "name": "EmployeeDiscount",
-  "version": "1.0.0",
-  "dependencies": {
-    "@cap-js/hana": "^2",
-    "@sap-cloud-sdk/connectivity": "^4.7.0",
-    "@sap-cloud-sdk/http-client": "^4.7.0",
-    "@sap/ams": "^3",
-    "@sap/cds": "^9",
-    "@sap/xssec": "^4",
-    "fast-xml-parser": "^5.8.0"
-  },
-  "devDependencies": {
-    "@cap-js/sqlite": "^2.4",
-    "@sap/ams-dev": "^2",
-    "@sap/cds-dk": "^9",
-    "cds-plugin-ui5": "^0.13.0",
-    "mbt": "^1.2.29",
-    "rimraf": "^5.0.5"
-  },
-  "scripts": {
-    "start": "cds-serve",
-    "undeploy": "cf undeploy EmployeeDiscount --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-employees-management": "cds watch --open employeesmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-discountapp": "cds watch --open com.sap.dis.discountapp/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "watch-employees": "cds watch --open employees/index.html?sap-ui-xx-viewCache=false --livereload false"
-  },
-  "private": true,
-  "workspaces": [
-    "app/*"
-  ],
-  "cds": {
-    "requires": {
-      "db": "hana",
-      "auth": "ias",
-      "[development]": {
-        "db": "sqlite",
-        "auth": {
-          "kind": "mocked",
-          "users": {
-            "Discount-Admin": {
-              "policies": [
-                "cap.DiscountAdmin"
-              ]
-            },
-            "Discount-Employee": {
-              "attr": {
-                "empid": "E000000001",
-                "name": "John"
-              },
-              "policies": [
-                "cap.DiscountEmployee"
-              ]
-            }
-          }
-        }
-      },
-      "SuccessFactors": {
-        "kind": "rest",
-        "credentials": {
-          "url": "https://<your-instance>.successfactors.com"
-        }
-      }
-    },
-    "log": {
-      "levels": {
-        "ams": "DEBUG"
-      }
-    }
-  },
-  "sapux": [
-    "app/employees-management",
-    "app/discountapp",
-    "app/employees",
-    "app/discountapp"
-  ]
+	"name": "EmployeeDiscount",
+	"version": "1.0.0",
+	"dependencies": {
+		"@cap-js/hana": "^2",
+		"@sap-cloud-sdk/connectivity": "^4.7.0",
+		"@sap-cloud-sdk/http-client": "^4.7.0",
+		"@sap/ams": "^3",
+		"@sap/cds": "^9",
+		"@sap/xssec": "^4",
+		"fast-xml-parser": "^5.8.0",
+		"@sap-cloud-sdk/resilience": "^4"
+	},
+	"devDependencies": {
+		"@cap-js/sqlite": "^2.4",
+		"@sap/ams-dev": "^2",
+		"@sap/cds-dk": "^9",
+		"cds-plugin-ui5": "^0.13.0",
+		"mbt": "^1.2.29",
+		"rimraf": "^5.0.5",
+		"@sap/dev-cap-tools": "^1.31.0"
+	},
+	"scripts": {
+		"start": "cds-serve",
+		"undeploy": "cf undeploy EmployeeDiscount --delete-services --delete-service-keys --delete-service-brokers",
+		"build": "rimraf resources mta_archives && mbt build --mtar archive",
+		"deploy": "cf deploy mta_archives/archive.mtar --retries 1",
+		"watch-employees-management": "cds watch --open employeesmanagement/index.html?sap-ui-xx-viewCache=false --livereload false",
+		"watch-discountapp": "cds watch --open com.sap.dis.discountapp/index.html?sap-ui-xx-viewCache=false --livereload false",
+		"watch-employees": "cds watch --open employees/index.html?sap-ui-xx-viewCache=false --livereload false"
+	},
+	"private": true,
+	"workspaces": [
+		"app/*"
+	],
+	"cds": {
+		"requires": {
+			"db": "hana",
+			"auth": "ias",
+			"[development]": {
+				"db": "sqlite",
+				"auth": {
+					"kind": "mocked",
+					"users": {
+						"Discount-Admin": {
+							"policies": [
+								"cap.DiscountAdmin"
+							]
+						},
+						"Discount-Employee": {
+							"attr": {
+								"empid": "E000000001",
+								"name": "John"
+							},
+							"policies": [
+								"cap.DiscountEmployee"
+							]
+						}
+					}
+				}
+			},
+			"SuccessFactors": {
+				"kind": "rest",
+				"credentials": {
+					"url": "https://<your-instance>.successfactors.com"
+				}
+			},
+			"sfsf_employeed": {
+				"kind": "odata-v2",
+				"model": "srv/external/sfsf-employeed",
+				"credentials": {
+					"destination": "sfsf",
+					"path": "/odata/v2"
+				},
+				"[hybrid]": {
+					"credentials": {
+						"destination": "sfsf",
+						"path": "/odata/v2"
+					}
+				}
+			},
+			"destinations": true
+		},
+		"log": {
+			"levels": {
+				"ams": "DEBUG"
+			}
+		}
+	},
+	"sapux": [
+		"app/employees-management",
+		"app/discountapp",
+		"app/employees",
+		"app/discountapp"
+	]
 }

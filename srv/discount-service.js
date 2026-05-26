@@ -7,6 +7,7 @@ const { Employees } = cds.entities;
 module.exports = cds.service.impl(async function () {
     //const sfsfDestination = await cds.connect.to('SuccessFactors');
 
+
     /**
      * @Before(event = "READ", entity = "Employees")
      */
@@ -132,5 +133,19 @@ module.exports = cds.service.impl(async function () {
         return { empId, firstName, lastName, dateOfJoining, location, managerID, maritalStatus, locationCode, costCenter, department, division }
 
   }
+
+   
+    this.on('READ', 'User', async (req) => {
+        const remoteService = await cds.connect.to('sfsf_employeed');
+
+        const result = await remoteService.send({
+            method: 'GET',
+            path:  "/User('sfxxxx')?$expand=empInfo&$format=JSON"
+        });
+
+         LOG.info('User response from SFSF:', result)
+        return result        
+        
+    });
 
 });

@@ -29,3 +29,5 @@ GET http://localhost:4004/discount/Employees
 Authorization: Basic RGlzY291bnQtRW1wbG95ZWU=
 
 ###
+GET http://localhost:4004/discount/Users
+Authorization: Basic RGlzY291bnQtRW1wbG95ZWU=

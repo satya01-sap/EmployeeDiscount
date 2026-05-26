@@ -1,4 +1,5 @@
 using { com.sap.discount as discount } from '../db/discount-schema';
+using { sfsf_employeed as external } from './external/sfsf-employeed';
 
 
   @(path:'/discount')
@@ -39,6 +40,7 @@ using { com.sap.discount as discount } from '../db/discount-schema';
   @odata.draft.enabled
   entity Offers as projection on discount.Offers;
 
+  entity User as projection on external.User;
 
   
   // entity Employees @(restrict: [{ grant: '*', to: 'discount.admin'} 

@@ -21,6 +21,25 @@
         "NODE_ENV": "development",
         "run.config": "{\"handlerId\":\"cap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/EmployeeDiscount\\\",\\\"profileName\\\":\\\"development\\\"}\"}"
       }
+    },
+    {
+      "name": "Run EmployeeDiscount-1",
+      "runtimeExecutable": "cds",
+      "request": "launch",
+      "killBehavior": "polite",
+      "args": [
+        "watch",
+        "--open"
+      ],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "type": "pwa-node",
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "dev-project-cap",
+      "envFile": "${workspaceFolder}/env/.env1",
+      "env": {
+        "run.config": "{\"handlerId\":\"lcap_run_config_handler_id\",\"runnableId\":\"{\\\"projectPath\\\":\\\"/home/user/projects/EmployeeDiscount\\\",\\\"profileName\\\":\\\"\\\"}\"}"
+      }
     }
   ]
 }

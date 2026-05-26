@@ -15,6 +15,8 @@ modules:
             app-identifier: srv
             credential-type: X509_GENERATED
       - name: EmployeeDiscount-db
+      - name: EmployeeDiscount-destination-service
+      - name: EmployeeDiscount-Srv-Destination
     provides:
       - name: srv-api
         properties:
@@ -117,6 +119,13 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+      config:
+        database_id: 23ce941e-878d-4e1c-a963-6d11f45971a9
+  - name: EmployeeDiscount-Srv-Destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite    
   - name: EmployeeDiscount-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
